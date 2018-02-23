@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- CSS Imports -->
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/leaflet.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- =====================
-      Add elements in this space
-      ====================== -->
-    </div>
-    <!-- Map -->
-    <div id="map" class="map"></div>
-    <!-- Javascript Imports -->
-    <script src="js/jquery-2.2.0.js"></script>
-    <script src="js/underscore.js"></script>
-    <script src="js/leaflet.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+<head>
+  <!-- CSS Imports -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- =====================
+    Add elements in this space
+    ====================== -->
+    <h1> Week 5 Assignment </h1>
+    <form>
+      <label id="text-label1" for="text-input1">URL Input:</label>
+      <input id="text-input1" class="input-text" type="text" placeholder="https://www..." enabled>
+      <br>
+      <br>
+      <label id="text-label2" for="text-input2">Exact Name of Latitude Value Key in Dataset:</label>
+      <input id="text-input2" class="input-text" type="text" placeholder="Key" value="" enabled>
+      <br>
+      <br>
+      <label id="text-label3" for="text-input3">Exact Name of Longitude Value Key in Dataset:</label>
+      <input id="text-input3" class="input-text" type="text" placeholder="Key" value="" enabled>
+      <br>
+      <br>
+    </form>
+
+    <script type="text/javascript" >
+    var runScript = function(){
+      var url = document.getElementById('text-input1').value;
+      var lat = document.getElementById('text-input2').value;
+      var lng = document.getElementById('text-input3').value;
+      var response = downloadData(document.getElementById('text-input1').value).done(function() {
+        var parsed = parseData(response);
+        var markers = makeMarkers(parsed, lat, lng);
+        plotMarkers(markers);
+      });
+    }
+    </script>
+
+
+    <button onclick = "runScript()">Run Script </button>
+
+
+  </div>
+  <!-- Map -->
+  <div id="map" class="map"></div>
+  <!-- Javascript Imports -->
+  <script src="js/jquery-2.2.0.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/leaflet.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>
